@@ -1,44 +1,38 @@
 #include<iostream>
 using namespace std;
 
-int* min_max(int *array, int start, int end)  {
-    int arr[2];
+class MinMax    {
+public:
+    int min;
+    int max;
+};
+
+MinMax min_max(int *array, int start, int end)  {
+    MinMax result;
     if(end == start)    {
-        arr[0] = array[start];
-        arr[1] = array[start];
+        result.min = array[start];
+        result.max = array[start];
     }
     else if(end-start == 1)   {
-        if(array[start]>array[end])   {
-            arr[0] = array[start];
-            arr[1] = array[end];
+        if(array[start] < array[end])   {
+            result.min = array[start];
+            result.max = array[end];
         }
         else    {
-            arr[0] = array[end];
-            arr[1] = array[start];
+            result.min = array[end];
+            result.max = array[start];
         }
     }
     else    {
         // Recursive call to find the maximum and minimum values in the sub-arrays.
         int mid = (end+start)/2;
-        int* arr1 = min_max(array, start, mid);
-        int* arr2 = min_max(array, mid+1, end);
+        MinMax arr1 = min_max(array, start, mid);
+        MinMax arr2 = min_max(array, mid+1, end);
 
-        if(arr1[0] < arr2[0]) {
-            arr[0] = arr1[0];
-        }
-        else    {
-            arr[0] = arr2[0];
-        }
-
-        if(arr1[1] > arr2[1]) {
-            arr[1] = arr1[1];
-        }
-        else    {
-            arr[1] = arr2[1];
-        }
-
-        return arr;
+        result.min = (arr1.min < arr2.min) ? arr1.min : arr2.min;
+        result.max = (arr1.max > arr2.max) ? arr1.max : arr2.max;
     }
+    return result;
 }
 
 int main()  {
@@ -52,9 +46,11 @@ int main()  {
         cin>>array[index];
     }
 
-    int* maxMin = min_max(array, 0, length-1);
+    MinMax maxMin = min_max(array, 0, length-1);
 
-    cout<<"Maximum value: "<<maxMin[0]<<endl<<" Minimum value: "<<maxMin[1];
+    cout<<"Maximum value: "<<maxMin.min<<endl<<"Minimum value: "<<maxMin.max;
+
+    getchar();
 
     return 0;
 }
