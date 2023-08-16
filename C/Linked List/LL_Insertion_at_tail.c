@@ -1,5 +1,4 @@
 #include<stdio.h>
-#include <string.h>
 #include<stdlib.h>
 
 struct Node {
@@ -35,8 +34,11 @@ void insertLL_at_tail()   {
 void printLL() {
     struct Node *ptr;
     ptr = START;
+
+    if(ptr) printf("%d ", ptr->data);
+    ptr = ptr->next;
     while(ptr)  {
-        printf("%d ", ptr->data);
+        printf("-> %d ", ptr->data);
         ptr = ptr->next;
     }
 }
