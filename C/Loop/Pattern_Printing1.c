@@ -14,6 +14,10 @@ int main()  {
     triangle1(height);
     printf("\n");
     triangle2(height);
+    printf("\n");
+    triangle3(height);
+    printf("\n");
+    triangle4(height);
 
     return 0;
 }
@@ -38,7 +42,7 @@ void triangle2(int height)  {
 
 void triangle3(int height)  {
     for(int index1=0 ; index1<height ; index1++) {
-        for(int index2=0 ; index2<index1+1 ; index2++)
+        for(int index2=0 ; index2<height-index1 ; index2++)
             printf("* ");
         printf("\n");
     }
@@ -46,7 +50,9 @@ void triangle3(int height)  {
 
 void triangle4(int height)  {
     for(int index1=0 ; index1<height ; index1++) {
-        for(int index2=0 ; index2<index1+1 ; index2++)
+        for(int index2=0 ; index2<index1 ; index2++)
+            printf("  ");
+        for(int index2=0 ; index2<height-index1 ; index2++)
             printf("* ");
         printf("\n");
     }
