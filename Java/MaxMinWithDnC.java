@@ -11,7 +11,7 @@ public class MaxMinWithDnC {
         for (byte index=0 ; index<len ; index++)    {
             arr[index] = scanner.nextByte();
         }
-
+        scanner.close();
         Point answer  = min_max(arr, 0, len-1);
 
         System.out.println("Minimum value is: " + (int)answer.getX() + "\nMaximum value is: " + (int)answer.getY());
