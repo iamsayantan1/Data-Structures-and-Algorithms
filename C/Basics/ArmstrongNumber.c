@@ -1,7 +1,7 @@
 #include<stdio.h>
-#include<math.h>
 
 void armstrong(int number);
+int power(int base, int exponent);
 
 int main()  {
     printf("Enter a number to check is it armstrong number or not: ");
@@ -17,9 +17,8 @@ void armstrong(int number)  {
     int temp = number;
     while(temp != 0)  {
         base = temp%10;
-        sum += pow(base,3);
+        sum += power(base,3);
         temp /= 10;
-        printf("\n%d ", sum );
     }
 
     if(sum == number)   {
@@ -28,4 +27,12 @@ void armstrong(int number)  {
     else    {
         printf("\nThe given %d isn't an Armstrong Number.\n", number );
     }
+}
+
+int power(int base, int exponent)  {
+    int pow=1;
+    for(int index=0 ; index<exponent ; index++) {
+        pow *= base;
+    }
+    return pow;
 }
